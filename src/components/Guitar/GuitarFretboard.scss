@@ -1,0 +1,48 @@
+.guitar {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px;
+  background: #222;
+  border-radius: 12px;
+}
+
+.string {
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  align-items: center;
+  height: 40px;
+  background: #444;
+  border-radius: 6px;
+  position: relative;
+}
+
+.fret {
+  position: relative;
+  border-right: 1px solid #222;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fret:last-child {
+  border-right: none;
+}
+
+.fret-label {
+  position: absolute;
+  bottom: 2px;
+  left: 4px;
+  font-size: 10px;
+  color: #bbb;
+  user-select: none;
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  background: red;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(255,0,0,0.7);
+}
