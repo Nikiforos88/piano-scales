@@ -1,35 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import Keyboard from "./components/Keyboard/Keyboard";
+import { NOTES } from "./components/data/notes";
+import { SCALES } from "./components/data/scales";
+import { buildScale } from "./components/utils/music";
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [root, setRoot] = useState("C");
+  const [scale, setScale] = useState("ionian");
+
+  const highlighted = buildScale(root, SCALES[scale].intervals);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <h1>Piano Scales</h1>
+
+      {/* Root note selection */}
+      <select value={root} onChange={e => setRoot(e.target.value)}>
+        {NOTES.map(n => (
+          <option key={n} value={n}>{n}</option>
+        ))}
+      </select>
+
+      {/* Scale selection */}
+      <select value={scale} onChange={e => setScale(e.target.value)}>
+        {Object.entries(SCALES).map(([key, obj]) => (
+          <option key={key} value={key}>{obj.name}</option>
+        ))}
+      </select>
+
+      <Keyboard highlightedNotes={highlighted} />
+    </div>
+  );
 }
 
-export default App
+export default App;
