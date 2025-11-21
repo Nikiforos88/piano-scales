@@ -1,5 +1,6 @@
 import "./Keyboard.scss";
 import { NOTES } from "../data/notes";
+import { playNote } from "../../audio/playNote";
 
 export default function Keyboard({ highlightedNotes = [] }) {
   const octaves = [3, 4, 5]; // 3 οκτάβες
@@ -18,6 +19,7 @@ export default function Keyboard({ highlightedNotes = [] }) {
               className={`key ${isBlack ? "black" : "white"} ${
                 isActive ? "active" : ""
               }`}
+              onClick={() => playNote(fullNote)}
             >
               {fullNote}
             </div>
